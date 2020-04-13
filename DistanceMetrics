@@ -1,0 +1,374 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#importing math library to calculating all the distance \n",
+    "\n",
+    "from math import*\n",
+    "from decimal import Decimal\n",
+    "import numpy as np"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<h1 class=\"postitle entry-title\">Five most popular similarity measures implementation in python</h1>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<img src=\"https://i1.wp.com/dataaspirant.com/wp-content/uploads/2015/04/cover_post_final.png?resize=690%2C293\" data-attachment-id=\"320\" data-permalink=\"https://dataaspirant.com/2015/04/11/five-most-popular-similarity-measures-implementation-in-python/cover_post_final/\" data-orig-file=\"https://i1.wp.com/dataaspirant.com/wp-content/uploads/2015/04/cover_post_final.png?fit=1000%2C425&amp;ssl=1\" data-orig-size=\"1000,425\" data-comments-opened=\"1\" data-image-meta=\"{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}\" data-image-title=\"Cover_post_final\" data-image-description=\"\" data-medium-file=\"https://i1.wp.com/dataaspirant.com/wp-content/uploads/2015/04/cover_post_final.png?fit=300%2C128&amp;ssl=1\" data-large-file=\"https://i1.wp.com/dataaspirant.com/wp-content/uploads/2015/04/cover_post_final.png?fit=690%2C293&amp;ssl=1\" class=\" size-full wp-image-320 aligncenter\" alt=\"Cover_post_final\" width=\"690\" height=\"293\" srcset=\"https://i1.wp.com/dataaspirant.com/wp-content/uploads/2015/04/cover_post_final.png?w=1000&amp;ssl=1 1000w, https://i1.wp.com/dataaspirant.com/wp-content/uploads/2015/04/cover_post_final.png?resize=300%2C128&amp;ssl=1 300w, https://i1.wp.com/dataaspirant.com/wp-content/uploads/2015/04/cover_post_final.png?resize=768%2C326&amp;ssl=1 768w\" sizes=\"(max-width: 690px) 100vw, 690px\" data-lazy-loaded=\"true\" style=\"display: block;\">"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Enuclidean Distance"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<p style=\"text-align: justify;\">The Euclidean distance between two points is the length of the path connecting them.The Pythagorean theorem gives this distance between two points.</p>\n",
+    "\n",
+    "<p style=\"text-align: justify;\">&nbsp; &nbsp;&nbsp;<a href=\"http://en.wikipedia.org/wiki/Euclidean_distance\">Euclidean distance</a>&nbsp;is the most common use of distance. In most cases when people said about distance, they will refer to Euclidean distance. Euclidean distance is also known as simply distance. When data is dense or continuous, this is the best proximity measure.</p>\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<p>In <a href=\"/wiki/Cartesian_coordinates\" class=\"mw-redirect\" title=\"Cartesian coordinates\">Cartesian coordinates</a>, if <b>p</b>&nbsp;=&nbsp;(<i>p</i><sub>1</sub>,&nbsp;<i>p</i><sub>2</sub>,...,&nbsp;<i>p</i><sub><i>n</i></sub>) and <b>q</b>&nbsp;=&nbsp;(<i>q</i><sub>1</sub>,&nbsp;<i>q</i><sub>2</sub>,...,&nbsp;<i>q</i><sub><i>n</i></sub>) are two points in <a href=\"/wiki/Euclidean_space\" title=\"Euclidean space\">Euclidean <i>n</i>-space</a>, then the distance (d) from <b>p</b> to <b>q</b>, or from <b>q</b> to <b>p</b> is given by the <a href=\"/wiki/Pythagorean_theorem\" title=\"Pythagorean theorem\">Pythagorean formula</a>:<sup id=\"cite_ref-Anton_1-0\" class=\"reference\"><a href=\"#cite_note-Anton-1\">[1]</a></sup>\n",
+    "</p>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<img src=\"https://wikimedia.org/api/rest_v1/media/math/render/svg/795b967db2917cdde7c2da2d1ee327eb673276c0\" class=\"mwe-math-fallback-image-inline\" aria-hidden=\"true\" style=\"vertical-align: -6.671ex; width:64.822ex; height:14.509ex;\" alt=\"{\\displaystyle {\\begin{aligned}d(\\mathbf {p} ,\\mathbf {q} )=d(\\mathbf {q} ,\\mathbf {p} )&amp;={\\sqrt {(q_{1}-p_{1})^{2}+(q_{2}-p_{2})^{2}+\\cdots +(q_{n}-p_{n})^{2}}}\\\\[8pt]&amp;={\\sqrt {\\sum _{i=1}^{n}(q_{i}-p_{i})^{2}}}.\\end{aligned}}}\">"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Implementation"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "9.746794344808963\n"
+     ]
+    }
+   ],
+   "source": [
+    "\n",
+    "def euclidean_distance(x,y):\n",
+    "    return sqrt(sum(pow(a-b,2) for a, b in zip(x, y)))\n",
+    "print(euclidean_distance([0,3,4,5],[7,6,3,-1]))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Manhattan Distance"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<img src=\"https://i2.wp.com/dataaspirant.com/wp-content/uploads/2015/04/manhattan.png?resize=600%2C400\" data-attachment-id=\"323\" data-permalink=\"https://dataaspirant.com/2015/04/11/five-most-popular-similarity-measures-implementation-in-python/manhattan/\" data-orig-file=\"https://i2.wp.com/dataaspirant.com/wp-content/uploads/2015/04/manhattan.png?fit=600%2C400&amp;ssl=1\" data-orig-size=\"600,400\" data-comments-opened=\"1\" data-image-meta=\"{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}\" data-image-title=\"manhattan\" data-image-description=\"\" data-medium-file=\"https://i2.wp.com/dataaspirant.com/wp-content/uploads/2015/04/manhattan.png?fit=300%2C200&amp;ssl=1\" data-large-file=\"https://i2.wp.com/dataaspirant.com/wp-content/uploads/2015/04/manhattan.png?fit=600%2C400&amp;ssl=1\" class=\" size-full wp-image-323 aligncenter\" alt=\"manhattan\" width=\"600\" height=\"400\" srcset=\"https://i2.wp.com/dataaspirant.com/wp-content/uploads/2015/04/manhattan.png?w=600&amp;ssl=1 600w, https://i2.wp.com/dataaspirant.com/wp-content/uploads/2015/04/manhattan.png?resize=300%2C200&amp;ssl=1 300w\" sizes=\"(max-width: 600px) 100vw, 600px\" data-lazy-loaded=\"true\" style=\"display: block;\">"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<p style=\"text-align: justify;\">Manhattan distance is a metric in which the distance between two points is the sum of the absolute differences of their Cartesian coordinates. In a simple way of saying it is the total&nbsp;suzm of the difference between the x-coordinates &nbsp;and y-coordinates.</p>\n",
+    "\n",
+    "<p style=\"text-align: justify;\">Suppose we have two points A and B if we want to find the Manhattan distance between them, just we have, to sum up, the absolute x-axis and y – axis variation means we have to find how these two points A and B are varying in X-axis and Y- axis. In a more mathematical way of saying Manhattan distance between two points measured along axes at right angles.</p>\n",
+    "\n",
+    "<p>In a plane with&nbsp;p1 at (x1, y1) and&nbsp;p2 at (x2, y2).</p>\n",
+    "\n",
+    "<p>Manhattan distance = |x1 – x2| + |y1 – y2|</p>\n",
+    "\n",
+    "<p style=\"text-align: justify;\">This Manhattan distance metric is also known as Manhattan length, rectilinear distance, L1 distance or L1 norm, city block distance, Minkowski’s L1 distance,&nbsp;taxi-cab metric, or city block distance.</p>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "10\n"
+     ]
+    }
+   ],
+   "source": [
+    "def manhattan_distance(x, y):\n",
+    "    return sum(abs(a-b) for a, b in zip(x,y))\n",
+    "print(manhattan_distance([10,20,10],[10,20,20]))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Minkowski Distance"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<img src=\"https://i2.wp.com/dataaspirant.com/wp-content/uploads/2015/04/minkowski.png?resize=665%2C266\" data-attachment-id=\"324\" data-permalink=\"https://dataaspirant.com/2015/04/11/five-most-popular-similarity-measures-implementation-in-python/minkowski/\" data-orig-file=\"https://i2.wp.com/dataaspirant.com/wp-content/uploads/2015/04/minkowski.png?fit=1000%2C400&amp;ssl=1\" data-orig-size=\"1000,400\" data-comments-opened=\"1\" data-image-meta=\"{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}\" data-image-title=\"minkowski\" data-image-description=\"\" data-medium-file=\"https://i2.wp.com/dataaspirant.com/wp-content/uploads/2015/04/minkowski.png?fit=300%2C120&amp;ssl=1\" data-large-file=\"https://i2.wp.com/dataaspirant.com/wp-content/uploads/2015/04/minkowski.png?fit=690%2C276&amp;ssl=1\" class=\" size-full wp-image-324 aligncenter\" alt=\"minkowski\" width=\"665\" height=\"266\" srcset=\"https://i2.wp.com/dataaspirant.com/wp-content/uploads/2015/04/minkowski.png?w=1000&amp;ssl=1 1000w, https://i2.wp.com/dataaspirant.com/wp-content/uploads/2015/04/minkowski.png?resize=300%2C120&amp;ssl=1 300w, https://i2.wp.com/dataaspirant.com/wp-content/uploads/2015/04/minkowski.png?resize=768%2C307&amp;ssl=1 768w\" sizes=\"(max-width: 665px) 100vw, 665px\" data-lazy-loaded=\"true\" style=\"display: block;\">"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<p>The Minkowski distance is a generalized metric form of Euclidean distance and Manhattan distance.</p>\n",
+    "\n",
+    "<p>The Minkowski distance of order <i>p</i> between two points\n",
+    "</p>\n",
+    "\n",
+    "<img src=\"https://wikimedia.org/api/rest_v1/media/math/render/svg/6d7865dead8d868ca3c6aa04e182a552d7f4fbc9\" class=\"mwe-math-fallback-image-inline\" aria-hidden=\"true\" style=\"vertical-align: -0.838ex; width:50.7ex; height:2.843ex;\" alt=\"X=(x_{1},x_{2},\\ldots ,x_{n}){\\text{ and }}Y=(y_{1},y_{2},\\ldots ,y_{n})\\in {\\mathbb  {R}}^{n}\">\n",
+    "<p>is defined as:\n",
+    "</p>\n",
+    "\n",
+    "<img src=\"https://wikimedia.org/api/rest_v1/media/math/render/svg/4060cc840aeab9e41b5e47356088889e2e7a6f0f\" class=\"mwe-math-fallback-image-inline\" aria-hidden=\"true\" style=\"vertical-align: -3.171ex; width:31.394ex; height:8.009ex;\" alt=\"{\\displaystyle D\\left(X,Y\\right)=\\left(\\sum _{i=1}^{n}|x_{i}-y_{i}|^{p}\\right)^{1/p}}\">\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "8.373\n"
+     ]
+    }
+   ],
+   "source": [
+    "def nth_root(value, n_root):\n",
+    "    root_value = 1/float(n_root)\n",
+    "    return round(Decimal(value)**Decimal(root_value), 3)\n",
+    "def minkoowski_distance(x, y, p_value):\n",
+    "    return nth_root(sum(pow(abs(a-b), p_value) for a, b in zip(x, y)), p_value)\n",
+    "\n",
+    "print(minkoowski_distance([0,3,4,5],[7,6,3,-1],3))\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Cosine Distance"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<img src=\"https://i2.wp.com/dataaspirant.com/wp-content/uploads/2015/04/cosine.png?resize=665%2C510\" data-attachment-id=\"325\" data-permalink=\"https://dataaspirant.com/2015/04/11/five-most-popular-similarity-measures-implementation-in-python/cosine/\" data-orig-file=\"https://i2.wp.com/dataaspirant.com/wp-content/uploads/2015/04/cosine.png?fit=697%2C535&amp;ssl=1\" data-orig-size=\"697,535\" data-comments-opened=\"1\" data-image-meta=\"\n",
+    "{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}\" data-image-title=\"cosine\" data-image-description=\"\" data-medium-file=\"https://i2.wp.com/dataaspirant.com/wp-content/uploads/2015/04/cosine.png?fit=300%2C230&amp;ssl=1\" data-large-file=\"https://i2.wp.com/dataaspirant.com/wp-content/uploads/2015/04/cosine.png?fit=690%2C530&amp;ssl=1\" class=\" size-full wp-image-325 aligncenter\" alt=\"cosine\" width=\"665\" height=\"510\" srcset=\"https://i2.wp.com/dataaspirant.com/wp-content/uploads/2015/04/cosine.png?w=697&amp;ssl=1 697w, https://i2.wp.com/dataaspirant.com/wp-content/uploads/2015/04/cosine.png?resize=300%2C230&amp;ssl=1 300w\" sizes=\"(max-width: 665px) 100vw, 665px\" data-lazy-loaded=\"true\" style=\"display: block;\">"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<p id=\"a646\" class=\"lq lr ea ap ls b lt mr lv ms lx mt lz mu mb mv md\" data-selectable-paragraph=\"\">Mostly Cosine distance metric is used to find similarities between different documents. In cosine metric we measure the degree of angle between two documents/vectors(the term frequencies in different documents collected as metrics). This particular metric is used when the magnitude between vectors does not matter but the orientation.</p>\n",
+    "\n",
+    "<p id=\"3927\" class=\"lq lr ea ap ls b lt lu lv lw lx ly lz ma mb mc md\" data-selectable-paragraph=\"\">Cosine similarity formula can be derived from the equation of dot products :-</p>\n",
+    "\n",
+    "<img class=\"py pz gm n o gl ab gi\" width=\"294\" height=\"197\" src=\"https://miro.medium.com/max/368/1*Y1bENdDLCKjJqDlbDZTHfg.png\">"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "0.972\n"
+     ]
+    }
+   ],
+   "source": [
+    "def cos_sim(a, b):\n",
+    "    \"\"\"Takes 2 vectors a, b and returns the cosine similarity according \n",
+    "    to the definition of the dot product\n",
+    "    \"\"\"\n",
+    "    dot_product = np.dot(a, b)\n",
+    "    norm_a = np.linalg.norm(a)\n",
+    "    norm_b = np.linalg.norm(b)\n",
+    "    return dot_product / (norm_a * norm_b)\n",
+    "\n",
+    "X = [3, 45, 7, 2]\n",
+    "Y = [2, 54, 13, 15]\n",
+    "\n",
+    "print(round(cos_sim(X, Y),3))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Jaccard Similarity "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<img src=\"https://i0.wp.com/dataaspirant.com/wp-content/uploads/2015/04/jaccard_similariyt.png?resize=665%2C266\" data-attachment-id=\"335\" data-permalink=\"https://dataaspirant.com/2015/04/11/five-most-popular-similarity-measures-implementation-in-python/jaccard_similariyt/\" data-orig-file=\"https://i0.wp.com/dataaspirant.com/wp-content/uploads/2015/04/jaccard_similariyt.png?fit=1000%2C400&amp;ssl=1\" data-orig-size=\"1000,400\" data-comments-opened=\"1\" data-image-meta=\"{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}\" data-image-title=\"jaccard_similariyt\" data-image-description=\"\" data-medium-file=\"https://i0.wp.com/dataaspirant.com/wp-content/uploads/2015/04/jaccard_similariyt.png?fit=300%2C120&amp;ssl=1\" data-large-file=\"https://i0.wp.com/dataaspirant.com/wp-content/uploads/2015/04/jaccard_similariyt.png?fit=690%2C276&amp;ssl=1\" class=\"alignnone size-full wp-image-335\" alt=\"jaccard_similariyt\" width=\"665\" height=\"266\" srcset=\"https://i0.wp.com/dataaspirant.com/wp-content/uploads/2015/04/jaccard_similariyt.png?w=1000&amp;ssl=1 1000w, https://i0.wp.com/dataaspirant.com/wp-content/uploads/2015/04/jaccard_similariyt.png?resize=300%2C120&amp;ssl=1 300w, https://i0.wp.com/dataaspirant.com/wp-content/uploads/2015/04/jaccard_similariyt.png?resize=768%2C307&amp;ssl=1 768w\" sizes=\"(max-width: 665px) 100vw, 665px\" data-lazy-loaded=\"true\" style=\"display: inline;\">"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Jaccard Index"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The Jaccard similarity index (sometimes called the Jaccard similarity coefficient) compares members for two sets to see which members are shared and which are distinct. It’s a measure of similarity for the two sets of data, with a range from 0% to 100%. The higher the percentage, the more similar the two populations. Although it’s easy to interpret, it is extremely sensitive to small samples sizes and may give erroneous results, especially with very small samples or data sets with missing observations."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "0.375\n"
+     ]
+    }
+   ],
+   "source": [
+    "def jaccard_similarity(x,y):\n",
+    " \n",
+    "    intersection_cardinality = len(set.intersection(*[set(x), set(y)]))\n",
+    "    union_cardinality = len(set.union(*[set(x), set(y)]))\n",
+    "    return intersection_cardinality/float(union_cardinality)\n",
+    " \n",
+    "print (jaccard_similarity([0,1,2,5,6],[0,2,3,5,7,9]))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.7.3"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
